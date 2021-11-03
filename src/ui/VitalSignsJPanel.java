@@ -290,14 +290,15 @@ public class VitalSignsJPanel extends javax.swing.JPanel {
     }
     
     private void updateJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateJButtonActionPerformed
-        VitalSigns vitalSigns = new VitalSigns();
+//        VitalSigns vitalSigns = new VitalSigns();
         boolean success = false;
         try {
             double bodyTemperature = Double.parseDouble(txtbodyTemperature.getText());
             vitalSigns.setBodyTemperature(bodyTemperature);
             success = true;            
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Body Temperature must be Float."); 
+            JOptionPane.showMessageDialog(null, "Body Temperature must be a Float decimal number");
+            success = false;
         }
 
         try {
@@ -305,71 +306,85 @@ public class VitalSignsJPanel extends javax.swing.JPanel {
             vitalSigns.setPulseRate(pulse);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Pulse Rate must be an Integer."); 
+            JOptionPane.showMessageDialog(null, "Pulse Rate must be an Integer");
+            success = false;
         }
 
         try {
-            double sbp = Double.parseDouble(txtbloodPressureSystolic.getText());
-            vitalSigns.setBloodPressureSystolic(sbp);
+            double bloodPressureSystolic = Double.parseDouble(txtbloodPressureSystolic.getText());
+            vitalSigns.setBloodPressureSystolic(bloodPressureSystolic);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Systolic BP must be Float."); 
+            JOptionPane.showMessageDialog(null, "Systolic BP must be a Float decimal number");
+            success = false;
         }
 
         try {
-            double dbp = Double.parseDouble(txtbloodPressureDiastolic.getText());
-            vitalSigns.setBloodPressureDiastolic(dbp);
+            double bloodPressureDiastolic = Double.parseDouble(txtbloodPressureDiastolic.getText());
+            vitalSigns.setBloodPressureDiastolic(bloodPressureDiastolic);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Diastolic Blood Pressure must be Float."); 
+            JOptionPane.showMessageDialog(null, "Diastolic Blood Pressure must be a Float decimal number");
+            success = false;
         }
 
         try {
-            int respiration = Integer.parseInt(txtrespirationRate.getText());
-            vitalSigns.setRespirationRate(respiration);
+            int respirationRate = Integer.parseInt(txtrespirationRate.getText());
+            vitalSigns.setRespirationRate(respirationRate);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Respiration Rate must be an Integer."); 
+            JOptionPane.showMessageDialog(null, "Respiration Rate must be an Integer"); 
+            success = false;
         }
 
         try {
-            double spo2 = Double.parseDouble(txtSPO2.getText());
-            vitalSigns.setSpo2(spo2);
+            double height = Double.parseDouble(txtheight.getText());
+            vitalSigns.setHeight(height);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "SpO2 must be Float."); 
+            JOptionPane.showMessageDialog(null, "Height must be a Float decimal number"); 
+            success = false;
         }
 
         try {
-            double bmi = Double.parseDouble(txtBmi.getText());
-            vitalSigns.setBmi(bmi);
+            double oxygenSaturation = Double.parseDouble(txtoxygenSaturation.getText());
+            vitalSigns.setOxygenSaturation(oxygenSaturation);
             success = true;
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "BMI must be Float."); 
+            JOptionPane.showMessageDialog(null, "Oxygen Saturation must be a Double decimal number"); 
+            success = false;
         }
+        
+        try {
+            double weight = Double.parseDouble(txtweight.getText());
+            vitalSigns.setWeight(weight);
+            success = true;
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Weight must be a Float decimal number"); 
+            success = false;
+        }
+        
         if (success) {
-            Encounter encounter = new Encounter(vitalSigns);
- 
-            EncounterHistory encounterHistory = person.getPatient().getEncounterHistory();
-            encounterHistory.getEncounterHistory().add(encounter);
- 
-            JOptionPane.showMessageDialog(this, "Successfully Added the Vital Signs");
+            vitalSigns.setUpdatedOn(formatDate(new Date()));
+
+            vitalSigns.setWeight(Double.valueOf(txtweight.getText()));
+            vitalSigns.setBloodPressureSystolic(Double.valueOf(txtbloodPressureSystolic.getText()));
+            vitalSigns.setBloodPressureDiastolic(Double.valueOf(txtbloodPressureDiastolic.getText()));
+            vitalSigns.setHeight(Double.valueOf(txtheight.getText()));
+            vitalSigns.setBodyTemperature(Double.valueOf(txtbodyTemperature.getText()));
+            vitalSigns.setPulseRate(Integer.valueOf(txtpulseRate.getText()));
+            vitalSigns.setRespirationRate(Integer.valueOf(txtrespirationRate.getText()));
+            vitalSigns.setOxygenSaturation(Double.valueOf(txtoxygenSaturation.getText()));
+            
+            JOptionPane.showMessageDialog(this, "Successfully updated the Vital Signs");
             resetData();
+
         }
-        
-        vitalSigns.setUpdatedOn(formatDate(new Date()));
-        
-        vitalSigns.setWeight(Double.valueOf(txtweight.getText()));
-        vitalSigns.setBloodPressureSystolic(Double.valueOf(txtbloodPressureSystolic.getText()));
-        vitalSigns.setBloodPressureDiastolic(Double.valueOf(txtbloodPressureDiastolic.getText()));
-        vitalSigns.setHeight(Double.valueOf(txtheight.getText()));
-        vitalSigns.setBodyTemperature(Double.valueOf(txtbodyTemperature.getText()));
-        vitalSigns.setPulseRateRate(Integer.valueOf(txtpulseRate.getText()));
-        vitalSigns.setRespirationRate(Integer.valueOf(txtrespirationRate.getText()));
-        vitalSigns.setOxygenSaturation(Double.valueOf(txtoxygenSaturation.getText()));
-        
-        
-        JOptionPane.showMessageDialog(this, "Successfully updated the Vital Signs");
+            
+//                        Encounter encounter = new Encounter(vitalSigns);
+// 
+//            EncounterHistory encounterHistory = person.getPatient().getEncounterHistory();
+//            encounterHistory.getEncounterHistory().add(encounter);
     }//GEN-LAST:event_updateJButtonActionPerformed
 
     private void resetData(){
@@ -383,6 +398,7 @@ public class VitalSignsJPanel extends javax.swing.JPanel {
         txtrespirationRate.setText("");
         txtweight.setText("");
         lblcreatedonOUT.setText("");
+        lblupdatedonOUT.setText("");
         
     }
     

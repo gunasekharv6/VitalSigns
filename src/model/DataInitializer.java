@@ -6,7 +6,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,53 +19,52 @@ public class DataInitializer {
         
         
         //Boston
-        //JamaicaPlain
         //Person1
-        //VitalSigns(weight,bloodPressure,height,bodyTemperate,pulseRate,respirationRate,oxygenSaturation,createdDate,lastUpdatedDate,createdBy,modifiedBy)
-        VitalSigns vsJPPerson1visit1 = new VitalSigns(60.20, 120, 80, 5.11, 38.8, 90, 19, 97.50);
-        VitalSigns vsJPPerson1visit2 = new VitalSigns(63.45, 135, 99, 6.00, 37.7, 90, 18, 99.50);
-        VitalSigns vsJPPerson1visit3 = new VitalSigns(58.21, 98, 89, 6.00, 39.5, 90, 18, 98.00);
+        //VitalSigns(weight,bloodPressure,height,bodyTemperaturee,pulseRate,respirationRate,oxygenSaturation)
+        VitalSigns p1vs1 = new VitalSigns(60.20, 120, 80, 5.11, 38.8, 90, 19, 97.50);
+        VitalSigns p1vs2 = new VitalSigns(63.45, 135, 99, 6.00, 37.7, 90, 18, 99.50);
+        VitalSigns p1vs3 = new VitalSigns(58.21, 98, 89, 6.00, 39.5, 90, 18, 98.00);
 
-        Encounter jPPerson1Encounter1 = new Encounter(vsJPPerson1visit1);
-        Encounter jPPerson1Encounter2 = new Encounter(vsJPPerson1visit2);
-        Encounter jPPerson1Encounter3 = new Encounter(vsJPPerson1visit3);
+        Encounter p1Enc1 = new Encounter(p1vs1);
+        Encounter p1Enc2 = new Encounter(p1vs2);
+        Encounter p1Enc3 = new Encounter(p1vs3);
 
-        List<Encounter> jPPerson1Encounters = new ArrayList<Encounter>();
-        jPPerson1Encounters.add(jPPerson1Encounter1);
-        jPPerson1Encounters.add(jPPerson1Encounter2);
-        jPPerson1Encounters.add(jPPerson1Encounter3);
-        EncounterHistory jPPerson1encounterHistory = new EncounterHistory(jPPerson1Encounters);
+        List<Encounter> p1encounterslist = new ArrayList<Encounter>();
+        p1encounterslist.add(p1Enc1);
+        p1encounterslist.add(p1Enc2);
+        p1encounterslist.add(p1Enc3);
+        EncounterHistory p1encounterhistory = new EncounterHistory(p1encounterslist);
         
-        Patient jPPatient1 = new Patient(jPPerson1encounterHistory);
-        Person jPPerson1 = new Person("Ronaldo",23.5,"Male",true,jPPatient1);
+        Patient p1 = new Patient(p1encounterhistory);
+        Person person1 = new Person("Shiva",23.5,"Male",true,p1);
         
         //Person2
-        VitalSigns vsJPPerson2visit1 = new VitalSigns(65.20, 118, 80, 5.70, 39.8, 94, 19, 95.58);
-        VitalSigns vsJPPerson2visit2 = new VitalSigns(64.60, 85, 95, 5.70, 40.5, 93, 20, 97.78);
-        VitalSigns vsJPPerson2visit3 = new VitalSigns(66.80, 142, 94, 5.70, 38.3, 96, 18, 99.50);
+        VitalSigns p2vs1 = new VitalSigns(65.20, 118, 80, 5.70, 39.8, 94, 19, 95.58);
+        VitalSigns p2vs2 = new VitalSigns(64.60, 85, 95, 5.70, 40.5, 93, 20, 97.78);
+        VitalSigns p2vs3 = new VitalSigns(66.80, 142, 94, 5.70, 38.3, 96, 18, 99.50);
         
-        Encounter jPPerson2Encounter1 = new Encounter(vsJPPerson2visit1);
-        Encounter jPPerson2Encounter2 = new Encounter(vsJPPerson2visit2);
-        Encounter jPPerson2Encounter3 = new Encounter(vsJPPerson2visit3);
+        Encounter p2Enc1 = new Encounter(p2vs1);
+        Encounter p2Enc2 = new Encounter(p2vs2);
+        Encounter p2Enc3 = new Encounter(p2vs3);
 
-        List<Encounter> jPPerson2Encounters = new ArrayList<Encounter>();
-        jPPerson2Encounters.add(jPPerson2Encounter1);
-        jPPerson2Encounters.add(jPPerson2Encounter2);
-        jPPerson2Encounters.add(jPPerson2Encounter3);
-        EncounterHistory jPPerson2encounterHistory = new EncounterHistory(jPPerson2Encounters);
+        List<Encounter> p2encounterslist = new ArrayList<Encounter>();
+        p2encounterslist.add(p2Enc1);
+        p2encounterslist.add(p2Enc2);
+        p2encounterslist.add(p2Enc3);
+        EncounterHistory p2encounterhistory = new EncounterHistory(p2encounterslist);
        
-        Patient jPPatient2 = new Patient(jPPerson2encounterHistory);
-        Person jPPerson2 = new Person("Thomas",26.0,"Female",false,jPPatient2);
+        Patient p2 = new Patient(p2encounterhistory);
+        Person person2 = new Person("Jennifer",26.0,"Female",false,p2);
         
         List<Person> house1Persons = new ArrayList<>();
-        house1Persons.add(jPPerson1);
-        house1Persons.add(jPPerson2);
+        house1Persons.add(person1);
+        house1Persons.add(person2);
         
-        House jPHouse1 = new House("50 EvergreenST", "MA", "USA", house1Persons);
+        House jPHouse1 = new House("24 Heath Street", "MA", "USA", house1Persons);
         List<House> jphouses = new ArrayList<>();
         jphouses.add(jPHouse1);
         
-        Community jpCommunity = new Community("Jamaica Plain",1000,jphouses);
+        Community jpCommunity = new Community("Huntington Avenue",1000,jphouses);
         List<Community> jpCommunities = new ArrayList<>();
         jpCommunities.add(jpCommunity);
         
@@ -102,13 +101,13 @@ public class DataInitializer {
         
         
         List<Person> parentsList = new ArrayList<>();
-        parentsList.add(jPPerson1);
-        parentsList.add(jPPerson2);
+        parentsList.add(person1);
+        parentsList.add(person2);
         PersonDirectory personDirectory = new PersonDirectory(parentsList);
         
         List<Patient> patientsList = new ArrayList<>();
-        patientsList.add(jPPatient1);
-        patientsList.add(jPPatient2);
+        patientsList.add(p1);
+        patientsList.add(p2);
         PatientDirectory patientDirectory = new PatientDirectory(patientsList);
         System system = new System(cities, personDirectory, patientDirectory);
         

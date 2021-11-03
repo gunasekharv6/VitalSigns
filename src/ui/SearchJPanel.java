@@ -49,12 +49,14 @@ public class SearchJPanel extends javax.swing.JPanel {
     }
     
     private void initializeCommunities() {
+        communityJComboBox.removeAllItems();
         String selectedCityName = (String) cityJComboBox.getSelectedItem();
         for(City city : system.getCities()) {
             if(city.getCityName().equalsIgnoreCase(selectedCityName)){
                 this.city = city;                
                 for(Community community : city.getCommunities()){
                     communityJComboBox.addItem(community.getCommunityName());
+                    
                 }
             }
         }
@@ -62,7 +64,7 @@ public class SearchJPanel extends javax.swing.JPanel {
     }
     
     private void initializeHouses() {
-        
+        houseJComboBox.removeAllItems();
         String selectedCommunityName = (String) communityJComboBox.getSelectedItem();
         for(Community community : this.city.getCommunities()) {
             if(community.getCommunityName().equalsIgnoreCase(selectedCommunityName)){
@@ -100,11 +102,6 @@ public class SearchJPanel extends javax.swing.JPanel {
 
         lblchoosecity.setText("City :");
 
-        cityJComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cityJComboBoxMouseReleased(evt);
-            }
-        });
         cityJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityJComboBoxActionPerformed(evt);
@@ -219,7 +216,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,6 +288,25 @@ public class SearchJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+            else if (person.getGender().equals("Female")){
+                for(int i=0; i<person.getPatient().getEncounterHistory().getEncounters().size(); i++){
+                    msbp = person.getPatient().getEncounterHistory().getEncounters().get(i).getVitalSigns().getBloodPressureSystolic();
+                    mdbp = person.getPatient().getEncounterHistory().getEncounters().get(i).getVitalSigns().getBloodPressureDiastolic();
+                    
+                    if (isAbnormalFemale(person, msbp, mdbp)){
+                        Object[] row = new Object[7];
+                        row[0]=selectedCityName;
+                        row[1]=selectedCommunityName;
+                        row[2]=selectedHouseName;
+                        row[3]=person;
+                        row[4]=person.getGender();
+                        row[5]=msbp;
+                        row[6]=mdbp;
+
+                        model.addRow(row);
+                    }
+                }
+            }
         }
 
     }//GEN-LAST:event_btnnextActionPerformed
@@ -300,7 +316,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         if(Double.compare(person.getAge(),21) < 0 || Double.compare(person.getAge(),65) > 0){
             return false;
         }
-        if(Double.compare(person.getAge(),21) > 0 && Double.compare(person.getAge(),25) < 0){
+        if(Double.compare(person.getAge(),21) >= 0 && Double.compare(person.getAge(),25) <= 0){
             if(Double.compare(syst,122.5) < 0 && Double.compare(syst,118.5) > 0 && Double.compare(diab,80.5) < 0 && Double.compare(diab,76.5) > 0){
                 return false;
             }else{
@@ -308,7 +324,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),26) > 0 && Double.compare(person.getAge(),30) < 0){
+        if(Double.compare(person.getAge(),26) >= 0 && Double.compare(person.getAge(),30) <= 0){
             if(Double.compare(syst,121.5) < 0 && Double.compare(syst,117.5) > 0 && Double.compare(diab,78.5) < 0 && Double.compare(diab,74.5) > 0){
                 return false;
             }else{
@@ -316,7 +332,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),31) > 0 && Double.compare(person.getAge(),35) < 0){
+        if(Double.compare(person.getAge(),31) >= 0 && Double.compare(person.getAge(),35) <= 0){
             if(Double.compare(syst,116.5) < 0 && Double.compare(syst,112.5) > 0 && Double.compare(diab,77.5) < 0 && Double.compare(diab,73.5) > 0){
                 return false;
             }else{
@@ -324,7 +340,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),36) > 0 && Double.compare(person.getAge(),40) < 0){
+        if(Double.compare(person.getAge(),36) >= 0 && Double.compare(person.getAge(),40) <= 0){
             if(Double.compare(syst,122.5) < 0 && Double.compare(syst,118.5) > 0 && Double.compare(diab,77.5) < 0 && Double.compare(diab,73.5) > 0){
                 return false;
             }else{
@@ -332,7 +348,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),41) > 0 && Double.compare(person.getAge(),45) < 0){
+        if(Double.compare(person.getAge(),41) >= 0 && Double.compare(person.getAge(),45) <= 0){
             if(Double.compare(syst,117.5) < 0 && Double.compare(syst,113.5) > 0 && Double.compare(diab,80.5) < 0 && Double.compare(diab,76.5) > 0){
                 return false;
             }else{
@@ -340,7 +356,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),46) > 0 && Double.compare(person.getAge(),50) < 0){
+        if(Double.compare(person.getAge(),46) >= 0 && Double.compare(person.getAge(),50) <= 0){
             if(Double.compare(syst,121.5) < 0 && Double.compare(syst,117.5) > 0 && Double.compare(diab,82.5) < 0 && Double.compare(diab,78.5) > 0){
                 return false;
             }else{
@@ -348,7 +364,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),51) > 0 && Double.compare(person.getAge(),55) < 0){
+        if(Double.compare(person.getAge(),51) >= 0 && Double.compare(person.getAge(),55) <= 0){
             if(Double.compare(syst,127.5) < 0 && Double.compare(syst,123.5) > 0 && Double.compare(diab,82.5) < 0 && Double.compare(diab,78.5) > 0){
                 return false;
             }else{
@@ -356,7 +372,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),56) > 0 && Double.compare(person.getAge(),60) < 0){
+        if(Double.compare(person.getAge(),56) >= 0 && Double.compare(person.getAge(),60) <= 0){
             if(Double.compare(syst,131.5) < 0 && Double.compare(syst,127.5) > 0 && Double.compare(diab,81.5) < 0 && Double.compare(diab,77.5) > 0){
                 return false;
             }else{
@@ -364,8 +380,87 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         }
 
-        if(Double.compare(person.getAge(),61) > 0 && Double.compare(person.getAge(),65) < 0){
+        if(Double.compare(person.getAge(),61) >= 0 && Double.compare(person.getAge(),65) <= 0){
             if(Double.compare(syst,145.5) < 0 && Double.compare(syst,141.5) > 0 && Double.compare(diab,78.5) < 0 && Double.compare(diab,74.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }return false;
+    }
+    
+    private boolean isAbnormalFemale(Person person, double syst, double diab){
+        
+        if(Double.compare(person.getAge(),21) < 0 || Double.compare(person.getAge(),65) > 0){
+            return false;
+        }
+
+        if(Double.compare(person.getAge(),21) >= 0 && Double.compare(person.getAge(),25) <= 0){
+            if(Double.compare(syst,117.5) < 0 && Double.compare(syst,113.5) > 0 && Double.compare(diab,72.5) < 0 && Double.compare(diab,68.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),26) >= 0 && Double.compare(person.getAge(),30) <= 0){
+            if(Double.compare(syst,115.5) < 0 && Double.compare(syst,111.5) > 0 && Double.compare(diab,73.5) < 0 && Double.compare(diab,69.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),31) >= 0 && Double.compare(person.getAge(),35) <= 0){
+            if(Double.compare(syst,113.5) < 0 && Double.compare(syst,108.5) > 0 && Double.compare(diab,74.5) < 0 && Double.compare(diab,70.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),36) >= 0 && Double.compare(person.getAge(),40) <= 0){
+            if(Double.compare(syst,114.5) < 0 && Double.compare(syst,110.5) > 0 && Double.compare(diab,76.5) < 0 && Double.compare(diab,72.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),41) >= 0 && Double.compare(person.getAge(),45) <= 0){
+            if(Double.compare(syst,118.5) < 0 && Double.compare(syst,114.5) > 0 && Double.compare(diab,75.5) < 0 && Double.compare(diab,71.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),46) >= 0 && Double.compare(person.getAge(),50) <= 0){
+            if(Double.compare(syst,126.0) < 0 && Double.compare(syst,122.5) > 0 && Double.compare(diab,80.5) < 0 && Double.compare(diab,76.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),51) >= 0 && Double.compare(person.getAge(),55) <= 0){
+            if(Double.compare(syst,124.5) < 0 && Double.compare(syst,120.5) > 0 && Double.compare(diab,76.5) < 0 && Double.compare(diab,72.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),56) >= 0 && Double.compare(person.getAge(),60) <= 0){
+            if(Double.compare(syst,134.5) < 0 && Double.compare(syst,130.5) > 0 && Double.compare(diab,80.5) < 0 && Double.compare(diab,76.5) > 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        if(Double.compare(person.getAge(),61) >= 0 && Double.compare(person.getAge(),65) <= 0){
+            if(Double.compare(syst,132.5) < 0 && Double.compare(syst,128.5) > 0 && Double.compare(diab,79.5) < 0 && Double.compare(diab,75.5) > 0){
                 return false;
             }else{
                 return true;
@@ -375,7 +470,7 @@ public class SearchJPanel extends javax.swing.JPanel {
     
     
     private void communityJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityJComboBoxActionPerformed
-        // TODO add your handling code here:
+        initializeHouses();
     }//GEN-LAST:event_communityJComboBoxActionPerformed
 
     private void houseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseJComboBoxActionPerformed
@@ -383,13 +478,8 @@ public class SearchJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_houseJComboBoxActionPerformed
 
     private void cityJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityJComboBoxActionPerformed
-        
-    }//GEN-LAST:event_cityJComboBoxActionPerformed
-
-    private void cityJComboBoxMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cityJComboBoxMouseReleased
         initializeCommunities();
-        
-    }//GEN-LAST:event_cityJComboBoxMouseReleased
+    }//GEN-LAST:event_cityJComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

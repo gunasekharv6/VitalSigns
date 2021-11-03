@@ -52,7 +52,7 @@ public class homeJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        controlJPanel.setBackground(new java.awt.Color(0, 153, 153));
+        controlJPanel.setBackground(new java.awt.Color(0, 142, 100));
 
         viewJButton.setText("View/Manage");
         viewJButton.addActionListener(new java.awt.event.ActionListener() {

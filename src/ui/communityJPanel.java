@@ -44,8 +44,9 @@ public class communityJPanel extends javax.swing.JPanel {
         populateTable();
     }
     
+    String regxCommunityName = "^[a-zA-Z\\s]+$";
+    String regxPopulation = "^[0-9]*$";
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,10 +154,11 @@ public class communityJPanel extends javax.swing.JPanel {
                 .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(goJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(communitiesJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(goJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addJButton)
@@ -278,15 +280,19 @@ public class communityJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "No new values entered\nPlease enter a new community name");
             return;
         }else{
-            long population = txtpopulation.getText().isEmpty()?0:Long.parseLong(txtpopulation.getText());
-            community.setCommunityName(txtcommunityname.getText());
-            community.setPopulation(population);
-        
-            JOptionPane.showMessageDialog(this, "Community updated successfully");
-            populateTable();
-        
-            txtcommunityname.setText("");
-            txtpopulation.setText("");
+            if (txtcommunityname.getText().matches(regxCommunityName) && txtpopulation.getText().matches(regxPopulation)){
+                long population = txtpopulation.getText().isEmpty()?0:Long.parseLong(txtpopulation.getText());
+                community.setCommunityName(txtcommunityname.getText());
+                community.setPopulation(population);
+
+                JOptionPane.showMessageDialog(this, "Community updated successfully");
+                populateTable();
+
+                txtcommunityname.setText("");
+                txtpopulation.setText("");
+            }else{
+                JOptionPane.showMessageDialog(this, "Enter a valid details\nOnly alphabets and spaces allowed for Community Name\nOnly numbers allowed for Population");
+            }
         }
     }//GEN-LAST:event_updateJButtonActionPerformed
 

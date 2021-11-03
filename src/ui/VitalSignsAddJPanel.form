@@ -31,7 +31,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="weightJLabel" min="-2" pref="140" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                                  <Component id="weightJTextField" min="-2" pref="135" max="-2" attributes="0"/>
+                                  <Component id="txtweight" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -64,11 +64,11 @@
                           </Group>
                           <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bodyTemperatureJTextField" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="heightJTextField" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="pulseRateJTextField" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="respirationRateJTextField" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="oxygenSaturationJTextField" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="txtbodyTemperature" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="txtheight" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="txtpulseRate" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="txtrespirationRate" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="txtoxygenSaturation" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -92,7 +92,7 @@
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="weightJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtweight" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="weightJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -108,27 +108,27 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="heightJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="heightJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtheight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bodyTemperatureJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="bodyTemperatureJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtbodyTemperature" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="pulseRateJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="pulseRateJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtpulseRate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="respirationRateJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="respirationRateJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtrespirationRate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="oxygenSaturationJLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="oxygenSaturationJTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtoxygenSaturation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="addJButton" min="-2" max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
         <Property name="text" type="java.lang.String" value="Oxygen Saturation :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="heightJTextField">
+    <Component class="javax.swing.JTextField" name="txtheight">
     </Component>
     <Component class="javax.swing.JLabel" name="addVitalSignsJLabel">
       <Properties>
@@ -194,7 +194,7 @@
         <Property name="text" type="java.lang.String" value="Add Vital Signs"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="bodyTemperatureJTextField">
+    <Component class="javax.swing.JTextField" name="txtbodyTemperature">
     </Component>
     <Component class="javax.swing.JButton" name="backJButton">
       <Properties>
@@ -213,13 +213,13 @@
         <Property name="text" type="java.lang.String" value="Weight :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="pulseRateJTextField">
+    <Component class="javax.swing.JTextField" name="txtpulseRate">
     </Component>
-    <Component class="javax.swing.JTextField" name="weightJTextField">
+    <Component class="javax.swing.JTextField" name="txtweight">
     </Component>
-    <Component class="javax.swing.JTextField" name="respirationRateJTextField">
+    <Component class="javax.swing.JTextField" name="txtrespirationRate">
     </Component>
-    <Component class="javax.swing.JTextField" name="oxygenSaturationJTextField">
+    <Component class="javax.swing.JTextField" name="txtoxygenSaturation">
     </Component>
     <Component class="javax.swing.JButton" name="addJButton">
       <Properties>

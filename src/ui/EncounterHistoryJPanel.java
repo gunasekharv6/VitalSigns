@@ -61,8 +61,6 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
         deleteJButton = new javax.swing.JButton();
         addJButton = new javax.swing.JButton();
         viewJButton = new javax.swing.JButton();
-        lblhighbp = new javax.swing.JButton();
-        lbllowbp = new javax.swing.JButton();
 
         encounterHistoryJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,7 +74,7 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -117,7 +115,7 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
             }
         });
 
-        addJButton.setText("Add");
+        addJButton.setText("Add New Signs");
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addJButtonActionPerformed(evt);
@@ -128,20 +126,6 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
         viewJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewJButtonActionPerformed(evt);
-            }
-        });
-
-        lblhighbp.setText("High BP :");
-        lblhighbp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblhighbpActionPerformed(evt);
-            }
-        });
-
-        lbllowbp.setText("Low BP :");
-        lbllowbp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lbllowbpActionPerformed(evt);
             }
         });
 
@@ -163,12 +147,7 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(encounterHistoryJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(182, 182, 182))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblhighbp)
-                            .addGap(18, 18, 18)
-                            .addComponent(lbllowbp))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -185,11 +164,7 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
                     .addComponent(deleteJButton)
                     .addComponent(addJButton)
                     .addComponent(viewJButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblhighbp)
-                    .addComponent(lbllowbp))
-                .addGap(65, 65, 65))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,81 +221,6 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
         cardLayout.next(displayJPanel);
     }//GEN-LAST:event_addJButtonActionPerformed
 
-    private void lblhighbpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblhighbpActionPerformed
-        
-        DefaultTableModel model = (DefaultTableModel) encounterHistoryJTable.getModel();
-        model.setRowCount(0);
-        
-        EncounterHistory encounterHistory = person.getPatient().getEncounterHistory();
-        List<Encounter> encounters = encounterHistory.getEncounters();
-        
-        int count=0;
-        
-        for(Encounter encounter:encounters) {
-            double sbp = encounter.getVitalSigns().getBloodPressureSystolic();
-            double dbp = encounter.getVitalSigns().getBloodPressureDiastolic();
-            
-            
-            if ((sbp>120 || dbp>80) && sbp>90 && dbp>60){
-                count++;
-                java.lang.System.out.println(sbp);
-                java.lang.System.out.println(dbp);
-            
-                Object[] row = new Object[7];
-                row[0]=encounter.getVitalSigns();
-                row[1]=encounter.getVitalSigns().getBloodPressureSystolic();
-                row[2]=encounter.getVitalSigns().getBloodPressureDiastolic();
-                row[3]=encounter.getVitalSigns().getHeight();
-                row[4]=encounter.getVitalSigns().getCreatedOn();
-                row[5]=encounter.getVitalSigns().getUpdatedOn();
-            
-                row[6] = person.getAge();
-            
-                model.addRow(row);
-            }            
-        }
-        if (count==0){
-            JOptionPane.showMessageDialog(this, "No BP abnormalities found for this person");
-        }
-    }//GEN-LAST:event_lblhighbpActionPerformed
-
-    private void lbllowbpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbllowbpActionPerformed
-        DefaultTableModel model = (DefaultTableModel) encounterHistoryJTable.getModel();
-        model.setRowCount(0);
-        
-        EncounterHistory encounterHistory = person.getPatient().getEncounterHistory();
-        List<Encounter> encounters = encounterHistory.getEncounters();
-        
-        int count=0;
-        
-        for(Encounter encounter:encounters) {
-            double sbp = encounter.getVitalSigns().getBloodPressureSystolic();
-            double dbp = encounter.getVitalSigns().getBloodPressureDiastolic();
-            
-            
-            if (sbp<90 || dbp<60){ 
-                count++;
-                java.lang.System.out.println(sbp);
-                java.lang.System.out.println(dbp);
-            
-                Object[] row = new Object[7];
-                row[0]=encounter.getVitalSigns();
-                row[1]=encounter.getVitalSigns().getBloodPressureSystolic();
-                row[2]=encounter.getVitalSigns().getBloodPressureDiastolic();
-                row[3]=encounter.getVitalSigns().getHeight();
-                row[4]=encounter.getVitalSigns().getCreatedOn();
-                row[5]=encounter.getVitalSigns().getUpdatedOn();
-            
-                row[6] = person.getAge();
-            
-                model.addRow(row);
-            }            
-        }
-        if (count==0){
-            JOptionPane.showMessageDialog(this, "No BP abnormalities found for this person");
-        }
-    }//GEN-LAST:event_lbllowbpActionPerformed
-
     private void navigateToVitalSignView(VitalSigns vitalSigns) {
         
         VitalSignsJPanel vitalSignsJPanel = new VitalSignsJPanel(displayJPanel, vitalSigns);
@@ -342,17 +242,17 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
             
             Object[] row = new Object[7];
             row[0]=encounter.getVitalSigns();
-            row[1]=encounter.getVitalSigns().getBloodPressureSystolic();
-            row[2]=encounter.getVitalSigns().getBloodPressureDiastolic();
-            row[3]=encounter.getVitalSigns().getHeight();
+            row[1] = person.getAge();
+            row[2]=encounter.getVitalSigns().getBloodPressureSystolic();
+            row[3]=encounter.getVitalSigns().getBloodPressureDiastolic();
+            row[4]=encounter.getVitalSigns().getHeight();
 //            row[4]=encounter.getVitalSigns().getBodyTemperate();
 //            row[5]=encounter.getVitalSigns().getPulseRate();
 //            row[6]=encounter.getVitalSigns().getRespirationRate();
 //            row[7]=encounter.getVitalSigns().getOxygenSaturation();
-            row[4]=encounter.getVitalSigns().getCreatedOn();
-            row[5]=encounter.getVitalSigns().getUpdatedOn();
+            row[5]=encounter.getVitalSigns().getCreatedOn();
+            row[6]=encounter.getVitalSigns().getUpdatedOn();
             
-            row[6] = person.getAge();
             
             model.addRow(row);
         }
@@ -366,8 +266,6 @@ public class EncounterHistoryJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel encounterHistoryJLabel;
     private javax.swing.JTable encounterHistoryJTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton lblhighbp;
-    private javax.swing.JButton lbllowbp;
     private javax.swing.JButton viewJButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,12 +34,12 @@ public class VitalSigns{
     
     private String updatedOn;
 
-    public VitalSigns(double weight, int bloodPressureSystolic, int bloodPressureDiastolic, double height, double bodyTemperate, int pulseRate, int respirationRate, double oxygenSaturation) {
+    public VitalSigns(double weight, double bloodPressureSystolic, double bloodPressureDiastolic, double height, double bodyTemperature, int pulseRate, int respirationRate, double oxygenSaturation) {
         this.weight = weight;
         this.bloodPressureSystolic = bloodPressureSystolic;
         this.bloodPressureDiastolic = bloodPressureDiastolic;
         this.height = height;
-        this.bodyTemperature = bodyTemperate;
+        this.bodyTemperature = bodyTemperature;
         this.pulseRate = pulseRate;
         this.respirationRate = respirationRate;
         this.oxygenSaturation = oxygenSaturation;

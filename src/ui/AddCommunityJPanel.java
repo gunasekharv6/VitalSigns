@@ -34,6 +34,9 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
         this.city=city;
         initComponents();
     }
+    
+    String regxCommunityName = "^[a-zA-Z\\s]+$";
+    String regxPopulation = "^[0-9]*$";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +49,7 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
 
         addCommunityJLabel = new javax.swing.JLabel();
         communityNameJLabel = new javax.swing.JLabel();
-        communityNameJTextField = new javax.swing.JTextField();
+        txtcommunityname = new javax.swing.JTextField();
         addJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         lblpopulation = new javax.swing.JLabel();
@@ -93,14 +96,14 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtpopulation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(communityNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtcommunityname, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(269, 269, 269)
                         .addComponent(addJButton)))
                 .addContainerGap(222, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {communityNameJTextField, txtpopulation});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtcommunityname, txtpopulation});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +115,7 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(communityNameJLabel)
-                    .addComponent(communityNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcommunityname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblpopulation, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,24 +125,28 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {communityNameJTextField, txtpopulation});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtcommunityname, txtpopulation});
 
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        // TODO add your handling code here:
-        java.lang.System.out.println("Inside add button of addcommunity");
-        String communityName = communityNameJTextField.getText();
-        long population = txtpopulation.getText().isEmpty()?0:Long.parseLong(txtpopulation.getText());
-        java.lang.System.out.println("1");
-        Community community = new Community(communityName, population, new ArrayList<>());
-        java.lang.System.out.println(community);
-        java.lang.System.out.println(city.getCommunities());
-        city.addCommunity(community);
-        java.lang.System.out.println("3");
-        JOptionPane.showMessageDialog(this, "Successfully Saved");
-        communityNameJTextField.setText("");
-        txtpopulation.setText("");
+        if (txtcommunityname.getText().matches(regxCommunityName) && txtpopulation.getText().matches(regxPopulation)){
+            java.lang.System.out.println("Inside add button of addcommunity");
+            String communityName = txtcommunityname.getText();
+            long population = txtpopulation.getText().isEmpty()?0:Long.parseLong(txtpopulation.getText());
+            java.lang.System.out.println("1");
+            Community community = new Community(communityName, population, new ArrayList<>());
+            java.lang.System.out.println(community);
+            java.lang.System.out.println(city.getCommunities());
+            city.addCommunity(community);
+            java.lang.System.out.println("3");
+            JOptionPane.showMessageDialog(this, "Successfully Saved");
+            txtcommunityname.setText("");
+            txtpopulation.setText("");
+        }else{
+                JOptionPane.showMessageDialog(this, "Enter a valid details\nOnly alphabets and spaces allowed for Community Name\nOnly numbers allowed for Population");
+        }
+        
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -159,8 +166,8 @@ public class AddCommunityJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel communityNameJLabel;
-    private javax.swing.JTextField communityNameJTextField;
     private javax.swing.JLabel lblpopulation;
+    private javax.swing.JTextField txtcommunityname;
     private javax.swing.JTextField txtpopulation;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,7 +66,7 @@ public class houseJPanel extends javax.swing.JPanel {
         lblhousename = new javax.swing.JLabel();
         lblcountry = new javax.swing.JLabel();
         txthousename = new javax.swing.JTextField();
-        addnewhouseJButton = new javax.swing.JButton();
+        btnresetfields = new javax.swing.JButton();
         txtstate = new javax.swing.JTextField();
         txtcountry = new javax.swing.JTextField();
 
@@ -154,10 +154,10 @@ public class houseJPanel extends javax.swing.JPanel {
             }
         });
 
-        addnewhouseJButton.setText("Add New House");
-        addnewhouseJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnresetfields.setText("Reset Fields");
+        btnresetfields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addnewhouseJButtonActionPerformed(evt);
+                btnresetfieldsActionPerformed(evt);
             }
         });
 
@@ -178,21 +178,6 @@ public class houseJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addnewhouseJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteJButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(goJButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(housesJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(142, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblhousename)
                 .addGap(18, 18, 18)
@@ -200,18 +185,30 @@ public class houseJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblstreetname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblcountry)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnresetfields)
+                .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(goJButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(housesJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addJButton)
-                        .addGap(30, 30, 30)
-                        .addComponent(updateJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblcountry)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(deleteJButton)
+                    .addComponent(addJButton)
+                    .addComponent(updateJButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,25 +218,26 @@ public class houseJPanel extends javax.swing.JPanel {
                     .addComponent(housesJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backJButton))
                 .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteJButton)
-                    .addComponent(goJButton)
-                    .addComponent(addnewhouseJButton))
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addJButton)
+                        .addGap(31, 31, 31)
+                        .addComponent(updateJButton)
+                        .addGap(34, 34, 34)
+                        .addComponent(deleteJButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(goJButton)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txthousename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblhousename, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblstreetname, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblcountry, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateJButton)
-                    .addComponent(addJButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnresetfields))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,12 +277,9 @@ public class houseJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        //AddCommunityJPanel addCommunityJPanel = new AddCommunityJPanel(displayJPanel, city);
-        //displayJPanel.add("AddCommunityScreen", addCommunityJPanel);
-        //CardLayout cardLayout = (CardLayout) displayJPanel.getLayout();
-        //cardLayout.next(displayJPanel);
-        if (txthousename.getText().isBlank()){
-            JOptionPane.showMessageDialog(this, "Please enter a valid House name");
+        
+        if (txthousename.getText().isBlank() && txtstate.getText().isBlank() && txtcountry.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter valid House details");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) housesJTable.getModel();
@@ -298,7 +293,11 @@ public class houseJPanel extends javax.swing.JPanel {
         
         House house = new House(txthousename.getText(), txtstate.getText(), txtcountry.getText());
         community.getHouses().add(house);
-        populateHouses();             
+        populateHouses(); 
+        
+        txthousename.setText("");
+        txtstate.setText("");
+        txtcountry.setText("");
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void deleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJButtonActionPerformed
@@ -387,12 +386,12 @@ public class houseJPanel extends javax.swing.JPanel {
         txtcountry.setText(house.getCountry());
     }//GEN-LAST:event_housesJTableMouseClicked
 
-    private void addnewhouseJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewhouseJButtonActionPerformed
-        JOptionPane.showMessageDialog(this, "Please enter new house details");
+    private void btnresetfieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresetfieldsActionPerformed
+        
         txthousename.setText("");
         txtstate.setText("");
         txtcountry.setText("");
-    }//GEN-LAST:event_addnewhouseJButtonActionPerformed
+    }//GEN-LAST:event_btnresetfieldsActionPerformed
 
     private void txtstateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstateActionPerformed
         // TODO add your handling code here:
@@ -405,8 +404,8 @@ public class houseJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
-    private javax.swing.JButton addnewhouseJButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnresetfields;
     private javax.swing.JButton deleteJButton;
     private javax.swing.JButton goJButton;
     private javax.swing.JLabel housesJLabel;

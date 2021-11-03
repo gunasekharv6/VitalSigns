@@ -33,6 +33,8 @@ public class systemJPanel extends javax.swing.JPanel {
         initializeCities();
     }
     
+    String regxCity = "^[a-zA-Z\\s]+$";
+    
     private void initializeCities() {
         
         cityJComboBox.removeAllItems();
@@ -162,11 +164,16 @@ public class systemJPanel extends javax.swing.JPanel {
             }
         }
         
-        CityList.addCity(new City(txtaddcity.getText()));
-        system.addCity(new City(txtaddcity.getText()));
-        JOptionPane.showMessageDialog(this, "City added successfully");
-        initializeCities();
-        txtaddcity.setText("");
+        if (txtaddcity.getText().matches(regxCity)){
+            CityList.addCity(new City(txtaddcity.getText()));
+            system.addCity(new City(txtaddcity.getText()));
+            JOptionPane.showMessageDialog(this, "City added successfully");
+            initializeCities();
+            txtaddcity.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter a valid City Name\nOnly alphabets and spaces allowed");
+        }
         
         
     }//GEN-LAST:event_btnaddcityActionPerformed

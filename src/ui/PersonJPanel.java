@@ -55,6 +55,9 @@ public class PersonJPanel extends javax.swing.JPanel {
         }
     }
     
+    String regxPersonName = "^[a-zA-Z\\s]+$";
+    String regxAge = "^[0-9]{0,2}+\\.?[0-9]{0,2}$";
+    
     private String formatDate(Date date){
        
         String pattern = "yyyy-MM-dd HH:mm:ss";
@@ -193,12 +196,9 @@ public class PersonJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addnewpersonJButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteJButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(125, 125, 125)
                                 .addComponent(goJButton))
                             .addComponent(personsJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -207,23 +207,27 @@ public class PersonJPanel extends javax.swing.JPanel {
                             .addComponent(lblcommunityName)
                             .addComponent(lblpersonname))
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtpersonname, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtgender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(147, 147, 147)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(addJButton)
-                                .addGap(55, 55, 55)
-                                .addComponent(updateJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtpersonname, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(txtgender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(147, 147, 147)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblage)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(chkbxmarried))))))
-                .addContainerGap(239, Short.MAX_VALUE))
+                                .addComponent(lblage)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chkbxmarried))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(deleteJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updateJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addJButton)
+                            .addComponent(addnewpersonJButton))))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtage, txtpersonname});
@@ -238,13 +242,18 @@ public class PersonJPanel extends javax.swing.JPanel {
                     .addComponent(personsJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backJButton))
                 .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(goJButton)
-                    .addComponent(deleteJButton)
-                    .addComponent(addnewpersonJButton))
-                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(goJButton)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(deleteJButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addnewpersonJButton)
+                        .addGap(27, 27, 27)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,15 +265,18 @@ public class PersonJPanel extends javax.swing.JPanel {
                             .addComponent(txtgender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblage, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(chkbxmarried)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateJButton)
-                    .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(chkbxmarried))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(updateJButton)))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addJButton, updateJButton});
@@ -321,23 +333,27 @@ public class PersonJPanel extends javax.swing.JPanel {
         if (person.getName().equals(txtpersonname.getText()) && String.valueOf(person.getAge()).equals(txtage.getText()) && person.getGender().equals(((String) txtgender.getSelectedItem())) && person.isMarried()==chkbxmarried.isSelected()) {
             JOptionPane.showMessageDialog(this, "No new values entered\nPlease enter a new details of the person");
             return;
-        }else if (txtpersonname.getText().equals("")){
+        }else if (txtpersonname.getText().equals("") || txtage.getText().equals("")){
             JOptionPane.showMessageDialog(this, "House Name is blank\nPlease enter a valid person name");
             return;
         }
         else{
-            person.setName(txtpersonname.getText());
-            person.setAge(Double.parseDouble(txtage.getText()));
-            person.setGender((String) txtgender.getSelectedItem());
-            person.setMarried(chkbxmarried.isSelected());
+            if (txtpersonname.getText().matches(regxPersonName) && txtage.getText().matches(regxAge)){
+                person.setName(txtpersonname.getText());
+                person.setAge(Double.parseDouble(txtage.getText()));
+                person.setGender((String) txtgender.getSelectedItem());
+                person.setMarried(chkbxmarried.isSelected());
 
-            JOptionPane.showMessageDialog(this, "Person updated successfully");
-            populateTable();
+                JOptionPane.showMessageDialog(this, "Person updated successfully");
+                populateTable();
 
-            txtpersonname.setText("");
-            txtgender.setSelectedIndex(0);
-            txtage.setText("");
-            chkbxmarried.setSelected(false);
+                txtpersonname.setText("");
+                txtgender.setSelectedIndex(0);
+                txtage.setText("");
+                chkbxmarried.setSelected(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "Enter valid details\nOnly alphabets and spaces allowed for Person Name\nOnly numbers(<100) allowed for Age");
+            }
         }
     }//GEN-LAST:event_updateJButtonActionPerformed
 
@@ -371,7 +387,7 @@ public class PersonJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         if (txtpersonname.getText().isBlank() && txtage.getText().isBlank()){
-            JOptionPane.showMessageDialog(this, "Please enter a valid details");
+            JOptionPane.showMessageDialog(this, "Please enter valid details");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) personsJTable.getModel();
@@ -386,16 +402,21 @@ public class PersonJPanel extends javax.swing.JPanel {
         if (gender.equals("Select")){
             gender = "";
         }
-        double age = txtage.getText().isBlank()?0:Double.parseDouble(txtage.getText());
         
-        Person person = new Person(txtpersonname.getText(), age, gender, chkbxmarried.isSelected(),new Patient());
-        house.getPersons().add(person);
-        populateTable();
-        
-        txtpersonname.setText("");
-        txtgender.setSelectedIndex(0);
-        txtage.setText("");
-        chkbxmarried.setSelected(false);
+        if (txtpersonname.getText().matches(regxPersonName) && txtage.getText().matches(regxAge)){
+            double age = txtage.getText().isBlank()?0:Double.parseDouble(txtage.getText());
+
+            Person person = new Person(txtpersonname.getText(), age, gender, chkbxmarried.isSelected(),new Patient());
+            house.getPersons().add(person);
+            populateTable();
+
+            txtpersonname.setText("");
+            txtgender.setSelectedIndex(0);
+            txtage.setText("");
+            chkbxmarried.setSelected(false);
+        }else{
+            JOptionPane.showMessageDialog(this, "Please enter valid details");
+        }
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void personsJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personsJTableMouseClicked
